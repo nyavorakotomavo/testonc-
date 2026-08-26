@@ -3,7 +3,7 @@ name: Spiritual Content
 on:
   workflow_dispatch:
   schedule:
-    # Exemple : tous les jours à 08:00 UTC
+    # Tous les jours à 08:00 UTC
     - cron: "0 8 * * *"
 
 permissions:
@@ -35,12 +35,13 @@ jobs:
       # ======================================================
       # 3. Installer les dépendances
       # ======================================================
-      - name: Install dependencies
-              run: |
-                python -m pip install --upgrade pip
-                pip install -r requirements.txt
 
-            # ======================================================
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # ======================================================
       # 4. Debug repository
       # ======================================================
 
@@ -60,7 +61,7 @@ jobs:
 
           echo "SPIRITUAL FILE SEARCH"
           find . -iname "*spiritual*" -print
-    
+
       # ======================================================
       # 5. Vérifier les variables nécessaires
       # ======================================================
@@ -110,14 +111,6 @@ jobs:
       # ======================================================
       # 7. Génération du contenu
       # ======================================================
-      #
-      # IMPORTANT :
-      # Cette commande doit correspondre au vrai système
-      # de génération présent dans ton dépôt.
-      #
-      # Remplace-la par le script réellement utilisé par OnC.
-      #
-      # ======================================================
 
       - name: Generate spiritual content
         env:
@@ -129,11 +122,6 @@ jobs:
 
       # ======================================================
       # 8. Génération vidéo
-      # ======================================================
-      #
-      # Cette étape est à utiliser uniquement si le pipeline
-      # vidéo d'OnC est prévu pour fonctionner avec Cloudflare.
-      #
       # ======================================================
 
       - name: Run video pipeline
