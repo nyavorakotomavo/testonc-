@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Archives de téléchargement de polices (ré-téléchargées à la volée)
+assets/fonts/*.zip
+
+# Artéfacts de génération vis (fichiers temporaires)
+vis_slide_*.png
+vis_texte.png
+
+# Historique des publications (auto-commité par le script)
+# Ne pas ignorer : on veut le versionner
+!published_history.json
+cf_test.py
+fix_cf.py
+fix_prompt.py
+vis_*.png
