@@ -40,9 +40,26 @@ jobs:
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
 
+            # ======================================================
+      # 4. Debug repository
       # ======================================================
-      # 4. Vérifier que le thème existe
-      # ======================================================
+
+      - name: Debug repository
+        run: |
+          echo "CURRENT DIRECTORY"
+          pwd
+
+          echo "GIT REMOTE"
+          git remote -v
+
+          echo "GIT COMMIT"
+          git rev-parse HEAD
+
+          echo "THEMES DIRECTORY"
+          ls -la themes || true
+
+          echo "SPIRITUAL FILE SEARCH"
+          find . -iname "*spiritual*" -print
     
       # ======================================================
       # 5. Vérifier les variables nécessaires
