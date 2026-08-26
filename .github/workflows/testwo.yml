@@ -1,0 +1,176 @@
+name: Spiritual Content
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Exemple : tous les jours à 08:00 UTC
+    - cron: "0 8 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  spiritual:
+    name: Generate and publish spiritual content
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # ======================================================
+      # 1. Télécharger le dépôt
+      # ======================================================
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ======================================================
+      # 2. Installer Python
+      # ======================================================
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # ======================================================
+      # 3. Installer les dépendances
+      # ======================================================
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # ======================================================
+      # 4. Vérifier que le thème existe
+      # ======================================================
+
+      - name: Check spiritual theme
+        run: |
+          test -f themes/spiritual.yaml
+          echo "✓ Spiritual theme found"
+
+      # ======================================================
+      # 5. Vérifier les variables nécessaires
+      # ======================================================
+
+      - name: Check configuration
+        env:
+          GEMINI_API_KEY_CONTENT: ${{ secrets.GEMINI_API_KEY_CONTENT }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os
+          import sys
+
+          required = [
+              "GEMINI_API_KEY_CONTENT",
+              "CLOUDFLARE_ACCOUNT_ID",
+              "CLOUDFLARE_API_TOKEN",
+          ]
+
+          missing = [
+              name for name in required
+              if not os.environ.get(name)
+          ]
+
+          if missing:
+              print("Missing GitHub Secrets:")
+              for name in missing:
+                  print(f" - {name}")
+              sys.exit(1)
+
+          print("✓ Required secrets are available")
+          PY
+
+      # ======================================================
+      # 6. Charger le thème
+      # ======================================================
+
+      - name: Load spiritual theme
+        env:
+          BRAND: spiritual
+          THEME_FILE: themes/spiritual.yaml
+        run: |
+          echo "Brand: $BRAND"
+          echo "Theme: $THEME_FILE"
+
+      # ======================================================
+      # 7. Génération du contenu
+      # ======================================================
+      #
+      # IMPORTANT :
+      # Cette commande doit correspondre au vrai système
+      # de génération présent dans ton dépôt.
+      #
+      # Remplace-la par le script réellement utilisé par OnC.
+      #
+      # ======================================================
+
+      - name: Generate spiritual content
+        env:
+          BRAND: spiritual
+          THEME_FILE: themes/spiritual.yaml
+          GEMINI_API_KEY_CONTENT: ${{ secrets.GEMINI_API_KEY_CONTENT }}
+        run: |
+          python post_content.py
+
+      # ======================================================
+      # 8. Génération vidéo
+      # ======================================================
+      #
+      # Cette étape est à utiliser uniquement si le pipeline
+      # vidéo d'OnC est prévu pour fonctionner avec Cloudflare.
+      #
+      # ======================================================
+
+      - name: Run video pipeline
+        if: ${{ success() }}
+        env:
+          BRAND: spiritual
+          THEME_FILE: themes/spiritual.yaml
+          GEMINI_API_KEY_CONTENT: ${{ secrets.GEMINI_API_KEY_CONTENT }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python video_pipeline/01_script.py
+          python video_pipeline/02_voice.py
+          python video_pipeline/03_analyze.py
+          python video_pipeline/04_visuals.py
+          python video_pipeline/05_animate.py
+          python video_pipeline/06_audio.py
+          python video_pipeline/07_editor.py
+          python video_pipeline/08_qc.py
+
+      # ======================================================
+      # 9. Publier la vidéo
+      # ======================================================
+
+      - name: Publish video
+        if: ${{ success() }}
+        env:
+          BRAND: spiritual
+          THEME_FILE: themes/spiritual.yaml
+          GEMINI_API_KEY_CONTENT: ${{ secrets.GEMINI_API_KEY_CONTENT }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python video_pipeline/publish_video.py
+
+      # ======================================================
+      # 10. Résumé
+      # ======================================================
+
+      - name: Workflow summary
+        if: always()
+        run: |
+          echo "======================================"
+          echo "      ONC SPIRITUAL WORKFLOW"
+          echo "======================================"
+          echo "Theme      : Spiritual"
+          echo "Text       : Gemini"
+          echo "Images     : Gemini"
+          echo "Video      : Cloudflare"
+          echo "Execution  : GitHub Actions"
+          echo "======================================"
