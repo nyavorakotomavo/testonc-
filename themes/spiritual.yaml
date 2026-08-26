@@ -1,480 +1,430 @@
-‎============================================================
-‎OnC — Spiritual Theme
-‎============================================================
-‎Niche:
-‎Spirituality / Personal Growth / Wisdom
-‎#
-‎Visual identity:
-‎Primary:   Deep Blue
-‎Secondary: Yellow / Gold
-‎Contrast:  Black
-‎#
-‎AI strategy:
-‎Text  -> Gemini
-‎Images -> Gemini
-‎Video visuals -> Cloudflare
-‎#
-‎IMPORTANT:
-‎This file only defines theme/configuration values.
-‎API keys and tokens MUST NOT be stored here.
-‎Put credentials in GitHub Actions Secrets.
-‎============================================================
-‎
-‎name: "Spiritual"
-‎
-‎description: >
-‎  Spiritual and inspirational content focused on inner peace,
-‎  personal growth, wisdom, self-reflection, mindfulness and
-‎  positive transformation.
-‎
-‎============================================================
-‎BRAND
-‎============================================================
-‎
-‎brand:
-‎  id: "spiritual"
-‎  name: "Spiritual"
-‎  niche: "spirituality"
-‎  language: "fr"
-‎
-‎============================================================
-‎CONTENT
-‎============================================================
-‎
-‎content:
-‎  language: "fr"
-‎
-‎  tone:
-· ‎"calme"
-· ‎"profond"
-· ‎"inspirant"
-· ‎"réfléchi"
-· ‎"bienveillant"
-· ‎"mystérieux"
-‎
-‎  pillars:
-· ‎id: "sagesse"
-‎      name: "Sagesse"
-‎      description: "Réflexions et enseignements sur la vie."
-‎
-· ‎id: "paix_interieure"
-‎      name: "Paix intérieure"
-‎      description: "Contenus sur le calme, la sérénité et l'équilibre intérieur."
-‎
-· ‎id: "developpement_personnel"
-‎      name: "Développement personnel"
-‎      description: "Transformation personnelle et progression intérieure."
-‎
-· ‎id: "spiritualite"
-‎      name: "Spiritualité"
-‎      description: "Réflexions spirituelles et recherche de sens."
-‎
-· ‎id: "mindfulness"
-‎      name: "Mindfulness"
-‎      description: "Présence, conscience de soi et observation intérieure."
-‎
-· ‎id: "sagesse_de_vie"
-‎      name: "Sagesse de vie"
-‎      description: "Leçons et réflexions inspirées des expériences humaines."
-‎
-‎  avoid:
-· ‎"affirmations médicales"
-· ‎"promesses de guérison"
-· ‎"fausses citations"
-· ‎"fausses prophéties"
-· ‎"manipulation émotionnelle"
-· ‎"contenu haineux"
-· ‎"désinformation"
-· ‎"conseils médicaux présentés comme certitudes"
-‎
-‎============================================================
-‎TEXT GENERATION
-‎============================================================
-‎
-‎ai:
-‎  text:
-‎    provider: "gemini"
-‎
-‎The actual API key MUST be stored in:
-‎    #
-‎GitHub:
-‎Settings
-‎→ Secrets and variables
-‎→ Actions
-‎    #
-‎Example secret name:
-‎GEMINI_API_KEY_CONTENT
-‎
-‎    api_key_secret: "GEMINI_API_KEY_CONTENT"
-‎
-‎    temperature: 0.8
-‎
-‎    system_style: >
-‎      Tu es un créateur de contenu spécialisé dans la spiritualité,
-‎      la réflexion personnelle, la sagesse et le développement intérieur.
-‎      Écris en français naturel, élégant et accessible.
-‎      Le contenu doit être profond sans être excessivement complexe.
-‎      Évite les affirmations présentées comme des vérités scientifiques
-‎      lorsqu'elles ne sont pas vérifiées.
-‎
-‎    writing_rules:
-· ‎"Utiliser un français naturel."
-· ‎"Privilégier des phrases courtes et fortes."
-· ‎"Créer une émotion sans manipulation."
-· ‎"Éviter les clichés excessifs."
-· ‎"Ne pas inventer de citations."
-· ‎"Ne pas présenter une opinion spirituelle comme un fait scientifique."
-· ‎"Ne pas faire de promesses médicales."
-· ‎"Conserver un ton positif et introspectif."
-‎
-‎============================================================
-‎IMAGE GENERATION
-‎============================================================
-‎
-‎ai:
-‎  image:
-‎    provider: "gemini"
-‎
-‎Example GitHub Actions secret:
-‎GEMINI_API_KEY_CONTENT
-‎    #
-‎Use the dedicated image-generation Gemini credential
-‎if your implementation uses a separate variable.
-‎
-‎    api_key_secret: "GEMINI_API_KEY_CONTENT"
-‎
-‎    aspect_ratio: "1:1"
-‎
-‎    quality: "high"
-‎
-‎    prompt_style: >
-‎      Create a cinematic spiritual visual in a deep blue,
-‎      golden yellow and black visual identity.
-‎      The atmosphere should feel peaceful, profound,
-‎      mysterious and inspirational.
-‎      Use dramatic lighting, deep shadows, subtle golden
-‎      highlights and elegant composition.
-‎      Avoid excessive religious symbolism unless explicitly
-‎      requested by the content.
-‎
-‎    negative_prompt: >
-‎      low quality, blurry, distorted face, deformed hands,
-‎      excessive text, watermark, logo, oversaturated colors,
-‎      childish design, cartoonish style, cheap stock-photo look
-‎
-‎============================================================
-‎VIDEO VISUAL GENERATION
-‎============================================================
-‎
-‎video:
-‎  enabled: true
-‎
-‎  visuals:
-‎    provider: "cloudflare"
-‎
-‎Credentials MUST be stored as GitHub Actions Secrets.
-‎    #
-‎Example:
-‎CLOUDFLARE_ACCOUNT_ID
-‎CLOUDFLARE_API_TOKEN
-‎
-‎    account_id_secret: "CLOUDFLARE_ACCOUNT_ID"
-‎    api_token_secret: "CLOUDFLARE_API_TOKEN"
-‎
-‎    style:
-‎      cinematic: true
-‎      atmospheric: true
-‎      dramatic_lighting: true
-‎      slow_motion_feel: true
-‎
-‎    visual_prompt: >
-‎      Cinematic spiritual atmosphere with deep blue shadows,
-‎      luminous golden yellow highlights and black contrast.
-‎      Peaceful, mysterious, elegant and emotionally powerful.
-‎      Slow and atmospheric visual composition suitable for
-‎      inspirational spiritual content.
-‎
-‎============================================================
-‎COLOR PALETTE
-‎============================================================
-‎
-‎colors:
-‎
-‎Deep blue
-‎  primary: "#0B1F3A"
-‎
-‎Bright golden yellow
-‎  secondary: "#F2C94C"
-‎
-‎Pure black
-‎  background: "#000000"
-‎
-‎White for readable text
-‎  text: "#FFFFFF"
-‎
-‎Accent blue
-‎  accent: "#2F80ED"
-‎
-‎Darker blue
-‎  dark_blue: "#061426"
-‎
-‎Soft gold
-‎  gold: "#D4AF37"
-‎
-‎============================================================
-‎VISUAL IDENTITY
-‎============================================================
-‎
-‎visual:
-‎
-‎  style: "cinematic spiritual"
-‎
-‎  mood:
-· ‎"profond"
-· ‎"mystérieux"
-· ‎"paisible"
-· ‎"élégant"
-· ‎"inspirant"
-‎
-‎  contrast: "high"
-‎
-‎  lighting:
-‎    type: "dramatic"
-‎    intensity: "medium-high"
-‎
-‎    preferred_effects:
-· ‎"golden glow"
-· ‎"soft light rays"
-· ‎"deep shadows"
-· ‎"subtle blue atmosphere"
-‎
-‎  composition:
-‎    style: "minimal cinematic"
-‎    subject_focus: true
-‎    negative_space: true
-‎
-‎============================================================
-‎TYPOGRAPHY
-‎============================================================
-‎
-‎fonts:
-‎
-‎  title:
-‎    family: "Inter"
-‎    weight: 700
-‎
-‎  subtitle:
-‎    family: "Inter"
-‎    weight: 600
-‎
-‎  body:
-‎    family: "Inter"
-‎    weight: 400
-‎
-‎  quote:
-‎    family: "Inter"
-‎    weight: 600
-‎
-‎============================================================
-‎TEXT DESIGN
-‎============================================================
-‎
-‎text_design:
-‎
-‎  title:
-‎    color: "#F2C94C"
-‎    uppercase: false
-‎
-‎  subtitle:
-‎    color: "#FFFFFF"
-‎
-‎  body:
-‎    color: "#FFFFFF"
-‎
-‎  quote:
-‎    color: "#F2C94C"
-‎
-‎  shadow:
-‎    enabled: true
-‎    color: "#000000"
-‎
-‎============================================================
-‎IMAGE DESIGN
-‎============================================================
-‎
-‎image:
-‎
-‎  style: "cinematic spiritual"
-‎
-‎  dominant_colors:
-· ‎"#0B1F3A"
-· ‎"#F2C94C"
-· ‎"#000000"
-‎
-‎  secondary_colors:
-· ‎"#FFFFFF"
-· ‎"#2F80ED"
-‎
-‎  lighting: "dramatic"
-‎
-‎  atmosphere:
-· ‎"peaceful"
-· ‎"mysterious"
-· ‎"deep"
-· ‎"cinematic"
-‎
-‎  subjects:
-· ‎"silhouette"
-· ‎"nature"
-· ‎"mountains"
-· ‎"ocean"
-· ‎"sky"
-· ‎"sunrise"
-· ‎"sunset"
-· ‎"stars"
-· ‎"person meditating"
-· ‎"quiet landscape"
-· ‎"light rays"
-‎
-‎  avoid:
-· ‎"generic stock photo"
-· ‎"excessive religious symbolism"
-· ‎"violent imagery"
-· ‎"horror imagery"
-· ‎"overly saturated colors"
-· ‎"unnecessary text inside image"
-‎
-‎============================================================
-‎POST FORMATS
-‎============================================================
-‎
-‎formats:
-‎
-‎  texte_seul:
-‎    enabled: true
-‎
-‎  image_texte:
-‎    enabled: true
-‎    image_provider: "gemini"
-‎
-‎  story:
-‎    enabled: true
-‎    image_provider: "gemini"
-‎
-‎  video:
-‎    enabled: true
-‎    visual_provider: "cloudflare"
-‎
-‎============================================================
-‎SOCIAL MEDIA STYLE
-‎============================================================
-‎
-‎social:
-‎
-‎  caption:
-‎    style: "short, emotional, reflective"
-‎
-‎  hashtags:
-‎    enabled: true
-‎
-‎    preferred:
-· ‎"#Spiritualité"
-· ‎"#Sagesse"
-· ‎"#PaixIntérieure"
-· ‎"#DéveloppementPersonnel"
-· ‎"#Mindfulness"
-· ‎"#Éveil"
-· ‎"#Réflexion"
-‎
-‎  call_to_action:
-‎    enabled: true
-‎
-‎    examples:
-· ‎"Et toi, qu'en penses-tu ?"
-· ‎"Prends un instant pour y réfléchir."
-· ‎"Quelle leçon en tires-tu ?"
-· ‎"Partage cette réflexion avec quelqu'un qui en a besoin."
-‎
-‎============================================================
-‎CONTENT SAFETY
-‎============================================================
-‎
-‎safety:
-‎
-‎  avoid_medical_claims: true
-‎
-‎  avoid_fake_quotes: true
-‎
-‎  avoid_false_facts: true
-‎
-‎  avoid_hate: true
-‎
-‎  avoid_extremism: true
-‎
-‎  avoid_manipulation: true
-‎
-‎  require_human_review_for_sensitive_content: true
-‎
-‎============================================================
-‎PROVIDER SUMMARY
-‎============================================================
-‎
-‎providers:
-‎
-‎  text:
-‎    primary: "gemini"
-‎
-‎  images:
-‎    primary: "gemini"
-‎
-‎  video_visuals:
-‎    primary: "cloudflare"
-‎
-‎============================================================
-‎ENVIRONMENT / GITHUB SECRETS
-‎============================================================
-‎
-‎secrets:
-‎
-‎Text + image generation
-‎  GEMINI_API_KEY_CONTENT:
-‎    required: true
-‎    used_for:
-· ‎"text_generation"
-· ‎"image_generation"
-‎
-‎Video visuals
-‎  CLOUDFLARE_ACCOUNT_ID:
-‎    required: true
-‎    used_for:
-· ‎"video_visual_generation"
-‎
-‎  CLOUDFLARE_API_TOKEN:
-‎    required: true
-‎    used_for:
-· ‎"video_visual_generation"
-‎
-‎============================================================
-‎DEFAULT SETTINGS
-‎============================================================
-‎
-‎defaults:
-‎
-‎  language: "fr"
-‎
-‎  timezone: "UTC"
-‎
-‎  image_ratio: "1:1"
-‎
-‎  visual_theme: "blue-yellow-black"
-‎
-‎  text_provider: "gemini"
-‎
-‎  image_provider: "gemini"
-‎
-‎  video_visual_provider: "cloudflare"
-‎
-‎============================================================
-‎END OF SPIRITUAL THEME
-‎============================================================
-‎
+# ============================================================
+# OnC — Spiritual Theme
+# ============================================================
+# Niche:
+#   Spiritualité / Développement personnel / Sagesse
+#
+# Identité visuelle :
+#   Primaire   : Bleu profond
+#   Secondaire : Jaune / Or
+#   Contraste  : Noir
+#
+# Stratégie IA :
+#   Texte  -> Gemini
+#   Images -> Gemini
+#   Visuels vidéo -> Cloudflare
+#
+# IMPORTANT :
+#   Ce fichier définit uniquement le thème/la configuration.
+#   Les clés API et tokens NE DOIVENT PAS être stockés ici.
+#   Mettre les identifiants dans GitHub Actions Secrets.
+# ============================================================
+
+name: "Spiritual"
+
+description: >
+  Contenu spirituel et inspirant centré sur la paix intérieure,
+  le développement personnel, la sagesse, l'introspection, la
+  pleine conscience et la transformation positive.
+
+# ============================================================
+# BRAND
+# ============================================================
+
+brand:
+  id: "spiritual"
+  name: "Spiritual"
+  niche: "spirituality"
+  language: "fr"
+
+# ============================================================
+# CONTENT
+# ============================================================
+
+content:
+  language: "fr"
+
+  tone:
+    - "calme"
+    - "profond"
+    - "inspirant"
+    - "réfléchi"
+    - "bienveillant"
+    - "mystérieux"
+
+  pillars:
+    - id: "sagesse"
+      name: "Sagesse"
+      description: "Réflexions et enseignements sur la vie."
+
+    - id: "paix_interieure"
+      name: "Paix intérieure"
+      description: "Contenus sur le calme, la sérénité et l'équilibre intérieur."
+
+    - id: "developpement_personnel"
+      name: "Développement personnel"
+      description: "Transformation personnelle et progression intérieure."
+
+    - id: "spiritualite"
+      name: "Spiritualité"
+      description: "Réflexions spirituelles et recherche de sens."
+
+    - id: "mindfulness"
+      name: "Mindfulness"
+      description: "Présence, conscience de soi et observation intérieure."
+
+    - id: "sagesse_de_vie"
+      name: "Sagesse de vie"
+      description: "Leçons et réflexions inspirées des expériences humaines."
+
+  avoid:
+    - "affirmations médicales"
+    - "promesses de guérison"
+    - "fausses citations"
+    - "fausses prophéties"
+    - "manipulation émotionnelle"
+    - "contenu haineux"
+    - "désinformation"
+    - "conseils médicaux présentés comme certitudes"
+
+# ============================================================
+# AI
+# ============================================================
+
+ai:
+  # ------------------------------------------------------------
+  # TEXT GENERATION
+  # ------------------------------------------------------------
+  text:
+    provider: "gemini"
+
+    # La clé API réelle doit être stockée dans :
+    #   GitHub -> Settings -> Secrets and variables -> Actions
+    # Exemple de nom de secret : GEMINI_API_KEY_CONTENT
+    api_key_secret: "GEMINI_API_KEY_CONTENT"
+
+    temperature: 0.8
+
+    system_style: >
+      Tu es un créateur de contenu spécialisé dans la spiritualité,
+      la réflexion personnelle, la sagesse et le développement intérieur.
+      Écris en français naturel, élégant et accessible.
+      Le contenu doit être profond sans être excessivement complexe.
+      Évite les affirmations présentées comme des vérités scientifiques
+      lorsqu'elles ne sont pas vérifiées.
+
+    writing_rules:
+      - "Utiliser un français naturel."
+      - "Privilégier des phrases courtes et fortes."
+      - "Créer une émotion sans manipulation."
+      - "Éviter les clichés excessifs."
+      - "Ne pas inventer de citations."
+      - "Ne pas présenter une opinion spirituelle comme un fait scientifique."
+      - "Ne pas faire de promesses médicales."
+      - "Conserver un ton positif et introspectif."
+
+  # ------------------------------------------------------------
+  # IMAGE GENERATION
+  # ------------------------------------------------------------
+  image:
+    provider: "gemini"
+
+    # Exemple de secret GitHub Actions : GEMINI_API_KEY_CONTENT
+    # Utiliser un identifiant Gemini dédié à la génération d'images
+    # si votre implémentation utilise une variable séparée.
+    api_key_secret: "GEMINI_API_KEY_CONTENT"
+
+    aspect_ratio: "1:1"
+
+    quality: "high"
+
+    prompt_style: >
+      Create a cinematic spiritual visual in a deep blue,
+      golden yellow and black visual identity.
+      The atmosphere should feel peaceful, profound,
+      mysterious and inspirational.
+      Use dramatic lighting, deep shadows, subtle golden
+      highlights and elegant composition.
+      Avoid excessive religious symbolism unless explicitly
+      requested by the content.
+
+    negative_prompt: >
+      low quality, blurry, distorted face, deformed hands,
+      excessive text, watermark, logo, oversaturated colors,
+      childish design, cartoonish style, cheap stock-photo look
+
+# ============================================================
+# VIDEO VISUAL GENERATION
+# ============================================================
+
+video:
+  enabled: true
+
+  visuals:
+    provider: "cloudflare"
+
+    # Les identifiants DOIVENT être stockés en GitHub Actions Secrets.
+    # Exemple : CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_API_TOKEN
+    account_id_secret: "CLOUDFLARE_ACCOUNT_ID"
+    api_token_secret: "CLOUDFLARE_API_TOKEN"
+
+    style:
+      cinematic: true
+      atmospheric: true
+      dramatic_lighting: true
+      slow_motion_feel: true
+
+    visual_prompt: >
+      Cinematic spiritual atmosphere with deep blue shadows,
+      luminous golden yellow highlights and black contrast.
+      Peaceful, mysterious, elegant and emotionally powerful.
+      Slow and atmospheric visual composition suitable for
+      inspirational spiritual content.
+
+# ============================================================
+# COLOR PALETTE
+# ============================================================
+
+colors:
+  primary: "#0B1F3A"      # Bleu profond
+  secondary: "#F2C94C"    # Jaune doré vif
+  background: "#000000"   # Noir pur
+  text: "#FFFFFF"         # Blanc pour texte lisible
+  accent: "#2F80ED"       # Bleu accent
+  dark_blue: "#061426"    # Bleu plus sombre
+  gold: "#D4AF37"         # Or doux
+
+# ============================================================
+# VISUAL IDENTITY
+# ============================================================
+
+visual:
+  style: "cinematic spiritual"
+
+  mood:
+    - "profond"
+    - "mystérieux"
+    - "paisible"
+    - "élégant"
+    - "inspirant"
+
+  contrast: "high"
+
+  lighting:
+    type: "dramatic"
+    intensity: "medium-high"
+
+    preferred_effects:
+      - "golden glow"
+      - "soft light rays"
+      - "deep shadows"
+      - "subtle blue atmosphere"
+
+  composition:
+    style: "minimal cinematic"
+    subject_focus: true
+    negative_space: true
+
+# ============================================================
+# TYPOGRAPHY
+# ============================================================
+
+fonts:
+  title:
+    family: "Inter"
+    weight: 700
+
+  subtitle:
+    family: "Inter"
+    weight: 600
+
+  body:
+    family: "Inter"
+    weight: 400
+
+  quote:
+    family: "Inter"
+    weight: 600
+
+# ============================================================
+# TEXT DESIGN
+# ============================================================
+
+text_design:
+  title:
+    color: "#F2C94C"
+    uppercase: false
+
+  subtitle:
+    color: "#FFFFFF"
+
+  body:
+    color: "#FFFFFF"
+
+  quote:
+    color: "#F2C94C"
+
+  shadow:
+    enabled: true
+    color: "#000000"
+
+# ============================================================
+# IMAGE DESIGN
+# ============================================================
+
+image:
+  style: "cinematic spiritual"
+
+  dominant_colors:
+    - "#0B1F3A"
+    - "#F2C94C"
+    - "#000000"
+
+  secondary_colors:
+    - "#FFFFFF"
+    - "#2F80ED"
+
+  lighting: "dramatic"
+
+  atmosphere:
+    - "peaceful"
+    - "mysterious"
+    - "deep"
+    - "cinematic"
+
+  subjects:
+    - "silhouette"
+    - "nature"
+    - "mountains"
+    - "ocean"
+    - "sky"
+    - "sunrise"
+    - "sunset"
+    - "stars"
+    - "person meditating"
+    - "quiet landscape"
+    - "light rays"
+
+  avoid:
+    - "generic stock photo"
+    - "excessive religious symbolism"
+    - "violent imagery"
+    - "horror imagery"
+    - "overly saturated colors"
+    - "unnecessary text inside image"
+
+# ============================================================
+# POST FORMATS
+# ============================================================
+
+formats:
+  texte_seul:
+    enabled: true
+
+  image_texte:
+    enabled: true
+    image_provider: "gemini"
+
+  story:
+    enabled: true
+    image_provider: "gemini"
+
+  video:
+    enabled: true
+    visual_provider: "cloudflare"
+
+# ============================================================
+# SOCIAL MEDIA STYLE
+# ============================================================
+
+social:
+  caption:
+    style: "short, emotional, reflective"
+
+  hashtags:
+    enabled: true
+
+    preferred:
+      - "#Spiritualité"
+      - "#Sagesse"
+      - "#PaixIntérieure"
+      - "#DéveloppementPersonnel"
+      - "#Mindfulness"
+      - "#Éveil"
+      - "#Réflexion"
+
+  call_to_action:
+    enabled: true
+
+    examples:
+      - "Et toi, qu'en penses-tu ?"
+      - "Prends un instant pour y réfléchir."
+      - "Quelle leçon en tires-tu ?"
+      - "Partage cette réflexion avec quelqu'un qui en a besoin."
+
+# ============================================================
+# CONTENT SAFETY
+# ============================================================
+
+safety:
+  avoid_medical_claims: true
+  avoid_fake_quotes: true
+  avoid_false_facts: true
+  avoid_hate: true
+  avoid_extremism: true
+  avoid_manipulation: true
+  require_human_review_for_sensitive_content: true
+
+# ============================================================
+# PROVIDER SUMMARY
+# ============================================================
+
+providers:
+  text:
+    primary: "gemini"
+
+  images:
+    primary: "gemini"
+
+  video_visuals:
+    primary: "cloudflare"
+
+# ============================================================
+# ENVIRONMENT / GITHUB SECRETS
+# ============================================================
+
+secrets:
+  # Génération de texte + images
+  GEMINI_API_KEY_CONTENT:
+    required: true
+    used_for:
+      - "text_generation"
+      - "image_generation"
+
+  # Visuels vidéo
+  CLOUDFLARE_ACCOUNT_ID:
+    required: true
+    used_for:
+      - "video_visual_generation"
+
+  CLOUDFLARE_API_TOKEN:
+    required: true
+    used_for:
+      - "video_visual_generation"
+
+# ============================================================
+# DEFAULT SETTINGS
+# ============================================================
+
+defaults:
+  language: "fr"
+  timezone: "UTC"
+  image_ratio: "1:1"
+  visual_theme: "blue-yellow-black"
+  text_provider: "gemini"
+  image_provider: "gemini"
+  video_visual_provider: "cloudflare"
+
+# ============================================================
+# END OF SPIRITUAL THEME
+# ============================================================
