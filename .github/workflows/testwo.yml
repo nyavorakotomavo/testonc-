@@ -44,12 +44,33 @@ jobs:
       # ======================================================
       # 4. Vérifier que le thème existe
       # ======================================================
+- name: Debug repository files
+  run: |
+    echo "=== CURRENT DIRECTORY ==="
+    pwd
 
-      - name: Check spiritual theme
-        run: |
-          test -f themes/spiritual.yaml
-          echo "✓ Spiritual theme found"
+    echo "=== GIT REMOTE ==="
+    git remote -v
 
+    echo "=== GIT BRANCH ==="
+    git branch --show-current
+
+    echo "=== GIT COMMIT ==="
+    git rev-parse HEAD
+
+    echo "=== THEMES DIRECTORY ==="
+    ls -la themes || true
+
+    echo "=== SPIRITUAL FILE SEARCH ==="
+    find . -iname "*spiritual*" -print
+
+    echo "=== CHECK ==="
+    if [ -f "themes/spiritual.yaml" ]; then
+      echo "✓ spiritual.yaml FOUND"
+    else
+      echo "❌ spiritual.yaml NOT FOUND"
+      exit 1
+    fi
       # ======================================================
       # 5. Vérifier les variables nécessaires
       # ======================================================
