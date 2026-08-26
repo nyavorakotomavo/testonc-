@@ -1,0 +1,40 @@
+name: "Spiritual"
+
+description: "Spiritual, reflective and inspirational content"
+
+colors:
+  primary: "#0B1F3A"
+  secondary: "#F2C94C"
+  background: "#000000"
+  text: "#FFFFFF"
+  accent: "#2F80ED"
+
+fonts:
+  title: "Inter"
+  body: "Inter"
+
+style:
+  visual_style: "spiritual"
+  mood: "calm, profound, mysterious, inspirational"
+  contrast: "high"
+
+content:
+  niche: "spirituality"
+  language: "fr"
+  tone: "calm, thoughtful, inspirational"
+  themes:
+    - "spiritual growth"
+    - "inner peace"
+    - "self-reflection"
+    - "wisdom"
+    - "mindfulness"
+    - "personal transformation"
+
+image:
+  style: "cinematic spiritual"
+  dominant_colors:
+    - "#0B1F3A"
+    - "#F2C94C"
+    - "#000000"
+  lighting: "dramatic"
+  atmosphere: "mysterious, peaceful, deep"
